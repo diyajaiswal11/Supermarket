@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {margin:0;}
+
+.navbar {
+  overflow: hidden;
+  background-color: rgb(16, 2, 141);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 25px 16px;
+  text-decoration: none;
+  font-size: 28px;
+  margin-left: 35px;
+}
+
+.nav1 {
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 30;
+    width: 100%;
+  }
+  
+  .nav1 a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 35px;
+  }
+
+
+
+.main {
+  padding: 50px;
+  margin-top: 80px;
+  
+   /* Used in this example to enable scrolling */
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="{% url 'home' %}">Super Market Management System</a>
+  
+</div>
+<div class="nav1">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Login</a>
+</div>
+
+<div class="main">
+    <br>
+    <img src="static/images/supermarket.jpg" width="550" height="600" style="float:right;margin-top:-6em;" >
+    <p>
+  <h1 style="font-size: 20px;">About Super Market Management System</h1>
+  <hr style="color:black;width:600px;margin-left: 1px; ">
+  <p style="font-size:16px;width:48%;">Poetry uses forms and conventions to suggest differential interpretations of words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia, and rhythm may convey musical or incantatory effects. The use of ambiguity, symbolism, irony, and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly, figures of speech such as metaphor, simile, and metonymy[5] establish a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm.
+
+   </p>
+  
+</p>
+
+  
+  </div>
+
+
+
+</body>
+</html>
