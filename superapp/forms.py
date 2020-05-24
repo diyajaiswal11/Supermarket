@@ -3,11 +3,29 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import authenticate, get_user_model
-#from .models import Book
+from .models import Product
 
 #from django.contrib.auth.models import User
 
 #User=get_user_model()
+
+class ProductForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Name'}))
+    company = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Company'}))
+    protype = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Type'}))
+    cost = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Cost'}))
+    class Meta:
+        model=Product
+        fields=['name','company','protype','cost']
+
+
+
+
+
+
+
+
+
 
 class CreateUserForm(UserCreationForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Password','class':'input100'}))

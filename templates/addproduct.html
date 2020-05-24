@@ -14,7 +14,7 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -96,51 +96,49 @@ input[type=text]:focus, input[type=password]:focus {
 </div>
 
 <div class="main">
-    
+    <br>
     <!--
     <img src="static/images/supermarket.jpg" width="550" height="600" style="float:right;margin-top:-6em;" >
     -->
     <p>
-    
+      
       <div style="text-align: center;">
-<br>
-  <h1 style="font-size: 20px;">Login to your Account</h1>
+
+  <h1 style="font-size: 20px;">Add/Edit Product Records</h1>
+  
   <hr style="color:black;width:400px; text-align:center ">
   <br>
+  <form method="POST" style="color:black">
+    {% csrf_token %} 
+    {{ form.name }}
+    <br>
+    {{ form.company }}
+    <br>
+    {{ form.protype }}
+    <br>
+    {{ form.cost }}
+    <br>
+    <button type="submit" class="registerbtn">
+        Submit
+    </button>
+    
+  </form>
+  <!--
    <form method="POST" action="">
        {% csrf_token %}
-       {% if form.errors %}
-       {% for field in form %}
-       {% for error in field.errors %}
-              <div class="alert alert-danger">
-                  <strong>{{ error|escape }}</strong>
-              </div>
-       {% endfor %}
-          {% endfor %}
-       {% for error in form.non_field_errors %}
-             <div class="alert alert-danger">
-                  <strong>{{ error|escape }}</strong>
-              </div>
-          {% endfor %}
-          {% endif %}
-       
    <div>
        {{ form.username }}
    </div>
    <div>
        {{ form.password }}
    </div>
-   
-       <button type="submit" class="registerbtn">
-           Login
-       </button>
+-->
+       
    
    
-   {% for message in messages %}
-       <p id="messages">{{message}}</p>
-   {% endfor %}
    
-   </form>
+   
+   
   </div>
 </p>
 

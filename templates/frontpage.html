@@ -52,6 +52,21 @@ body {margin:0;}
   
    /* Used in this example to enable scrolling */
 }
+.boxprop:link, .boxprop:visited {
+  background-color:rgb(7, 20, 80);
+  color: white;
+  text-align: center;
+  height:10px;
+  width:415px;
+  text-decoration: none;
+  display: inline-block;
+  padding-top: 13px;
+  padding-bottom: 19px;
+}
+
+.boxprop:hover, .boxprop:active {
+  background-color: rgb(110, 111, 117);
+}
 </style>
 </head>
 <body>
@@ -61,31 +76,34 @@ body {margin:0;}
   
 </div>
 <div class="nav1">
-    <a href="#">Home</a>
-    <a href="#">Dashboard</a>
+    <a href="{% url 'frontpage' %}">Dashboard</a>
     <a href="#">Product Management</a>
     <a href="#">Sales Management</a>
     <a href="#">Change Password</a>
-    <a href="#">Logout</a>
+    <a href="{% url 'logoutpage' %}">Logout</a>
     
 </div>
 
 <div class="main">
     <br>
+    <br>
     
-   
+   <div style="text-align: center;">
   <h1 style="font-size: 20px;">Super Market Management System Dashboard</h1>
-  <hr style="color:black;width:600px;margin-left: 1px; ">
-  <p style="font-size:16px;width:48%;">Poetry uses forms and conventions to suggest differential interpretations of words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia, and rhythm may convey musical or incantatory effects. The use of ambiguity, symbolism, irony, and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly, figures of speech such as metaphor, simile, and metonymy[5] establish a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm.
-
-   </p>
-  
-
+  <hr style="color:black;width:600px;text-align:center ">
+  <br>
+  <a href="{% url 'addproduct' %}" class="boxprop">Add Product</a>
+  <br><br>
+  <a href="{% url 'viewproduct' %}" class="boxprop">Product Details</a>
+  <br><br>
+  <a href="#" class="boxprop">Product Sales Details</a>
+  <br><br>
+  <a href="#" class="boxprop">This is a link</a>
   
   </div>
 
 
-
+</div>
 </body>
 </html>
 

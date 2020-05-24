@@ -11,6 +11,50 @@ from django.http import HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
+from .forms import ProductForm
+from .models import Product
+
+
+def viewproduct(request):
+    return render(request,'viewproduct.html')
+
+
+
+def addproduct(request):
+    if request.method=='POST':
+        form=ProductForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            return redirect('frontpage') 
+
+    else:
+        form=ProductForm()
+    return render(request,'addproduct.html',{'form':form})
+
+
+def logoutpage(request):
+    logout(request)
+    return redirect('home')
+
+def home(request):
+    return render(request,'home.html')
+
+
+@login_required
+def frontpage(request):
+    return render(request,'frontpage.html')
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 def register(request):
@@ -50,28 +94,7 @@ def loginpage(request):
         context = {
             'form': form,
         }
-        return render(request, 'loginpage.html', context)
+        return render(request, 'login.html', context)
 
 
 
-
-def logoutpage(request):
-    logout(request)
-    return redirect('home')
-
-
-
-
-
-
-
-
-
-
-def home(request):
-    return render(request,'home.html')
-
-
-def frontpage(request):
-    return render(request,'frontpage.html')
-    
