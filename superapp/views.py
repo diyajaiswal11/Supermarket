@@ -16,7 +16,8 @@ from .models import Product
 
 
 def viewproduct(request):
-    return render(request,'viewproduct.html')
+    products=Product.objects.all()
+    return render(request,'viewproduct.html',{'products':products})
 
 
 

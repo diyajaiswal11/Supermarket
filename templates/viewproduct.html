@@ -80,6 +80,17 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
   
    /* Used in this example to enable scrolling */
 }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
 </style>
 </head>
 <body>
@@ -102,14 +113,31 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
     -->
     <p>
       
-      <div style="text-align: left;">
+      <div style="text-align: center;">
 
   <h1 style="font-size: 23px;">Product Records</h1>
+  <table style="width:700px;margin-left:auto;margin-right:auto">
+  <tr style="background-color:rgb(10, 31, 128);color:white;">
+    <th style="text-align: center;">Sr.No</th>
+    <th style="text-align: center;">Name</th>
+    <th style="text-align: center;">Company</th>
+    <th style="text-align: center;">Type</th>
+    <th style="text-align: center;">Cost</th>
+  </tr>
+  {% for product in products %} 
+
   
-  
+                <tr style="color: black;font-size:16px;font-family:times">
+                    <th style="text-align: center;">{{ product.id }}</th>
+                    <th>{{ product.name }}</th>
+                    <th>{{ product.company }}</th>
+                    <th>{{ product.protype }}</th>
+                    <th>{{ product.cost }}</th>
+                </tr>
+                {% endfor %}
   
    
-   
+   </table>
    
    
    
