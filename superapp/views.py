@@ -21,6 +21,39 @@ def viewproduct(request):
 
 
 
+
+def editproduct(request,pk):
+    item=get_object_or_404(Product,pk=pk)
+
+    if request.method=='POST':
+        form=ProductForm(request.POST,instance=item)
+        if form.is_valid():
+            form.save() 
+            return redirect('viewproduct')
+
+    else:
+        form=ProductForm(instance=item) 
+    
+    return render(request,'editproduct.html',{'form':form})
+
+
+
+
+
+def deleteproduct(request,pk):
+    Product.objects.filter(id=pk).delete() 
+
+    products=Product.objects.all()
+    return render(request,'viewproduct.html',{'products':products})
+
+
+
+
+
+
+
+
+
 def addproduct(request):
     if request.method=='POST':
         form=ProductForm(request.POST)
