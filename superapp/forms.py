@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import authenticate, get_user_model
-from .models import Product
+from .models import Product, Customer
 
 #from django.contrib.auth.models import User
 
@@ -19,6 +19,12 @@ class ProductForm(forms.ModelForm):
         fields=['name','company','protype','cost']
 
 
+class CustomerForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Name'}))
+    phoneno = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Phone Number'}))
+    class Meta:
+        model=Customer
+        fields=['name','phoneno']
 
 
 

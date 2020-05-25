@@ -7,12 +7,41 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm, UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login , logout, get_user_model
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-# Create your views here.
-from .forms import ProductForm
-from .models import Product
+from django.urls import reverse
+from .forms import ProductForm, CustomerForm
+from .models import Product, Customer
+
+
+def addcustomer(request):
+    if request.method=='POST':
+        form=CustomerForm(request.POST)
+        if form.is_valid():
+            x=form.save() 
+            #pk1=form.pk
+            #return redirect('addorder', pk=form.pk)
+            #return redirect('frontpage') 
+            return HttpResponseRedirect(reverse('addorder', args=(x.pk,)))
+
+    else:
+        form=CustomerForm()
+    return render(request,'addcustomer.html',{'form':form})
+
+
+
+
+def addorder(request,pk):
+    customer = get_object_or_404(Customer, pk=pk)
+    return render(request,'addorder.html',{'customer':customer})
+    
+
+
+
+
+
+
 
 
 def viewproduct(request):
@@ -23,6 +52,7 @@ def viewproduct(request):
 
 
 def editproduct(request,pk):
+
     item=get_object_or_404(Product,pk=pk)
 
     if request.method=='POST':
@@ -45,11 +75,6 @@ def deleteproduct(request,pk):
 
     products=Product.objects.all()
     return render(request,'viewproduct.html',{'products':products})
-
-
-
-
-
 
 
 

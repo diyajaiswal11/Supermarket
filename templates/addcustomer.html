@@ -5,6 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {margin:0;}
+input[type=text], input[type=password] {
+  width: 250px;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.registerbtn {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90px;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
 
 .navbar {
   overflow: hidden;
@@ -52,21 +80,6 @@ body {margin:0;}
   
    /* Used in this example to enable scrolling */
 }
-.boxprop:link, .boxprop:visited {
-  background-color:rgb(7, 20, 80);
-  color: white;
-  text-align: center;
-  height:10px;
-  width:415px;
-  text-decoration: none;
-  display: inline-block;
-  padding-top: 13px;
-  padding-bottom: 19px;
-}
-
-.boxprop:hover, .boxprop:active {
-  background-color: rgb(110, 111, 117);
-}
 </style>
 </head>
 <body>
@@ -86,44 +99,42 @@ body {margin:0;}
 
 <div class="main">
     <br>
-    <br>
+    <!--
+    <img src="static/images/supermarket.jpg" width="550" height="600" style="float:right;margin-top:-6em;" >
+    -->
+    <p>
+      
+      <div style="text-align: left;">
+
+  <h1 style="font-size: 20px;">Enter Customer Details</h1>
+  
+  <hr style="color:black;width:800px;margin-left:0px;">
+  
+  <form method="POST" style="color:black">
+    {% csrf_token %} 
+    {{ form.name }}
     
-   <div style="text-align: center;">
-  <h1 style="font-size: 20px;">Super Market Management System Dashboard</h1>
-  <hr style="color:black;width:600px;text-align:center ">
-  <br>
-  <a href="{% url 'addproduct' %}" class="boxprop">Add Product</a>
-  <br><br>
-  <a href="{% url 'viewproduct' %}" class="boxprop">Product Records</a>
-  <br><br>
-  <a href="{% url 'addcustomer' %}" class="boxprop">Add Customer</a>
-  <br><br>
-  <a href="#" class="boxprop">This is a link</a>
+    {{ form.phoneno }}
+    
+    <button type="submit" class="registerbtn">
+        Add
+    </button>
+    
+  </form>
+   
+   
+   
+   
+  </div>
+</p>
+
   
   </div>
 
 
-</div>
+
 </body>
 </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
