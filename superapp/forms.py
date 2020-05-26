@@ -24,7 +24,14 @@ class CustomerForm(forms.ModelForm):
     phoneno = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Phone Number'}))
     class Meta:
         model=Customer
-        fields=['name','phoneno']
+        fields=['name','phoneno'] 
+
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model=Customer 
+        fields=['orders']
 
 
 

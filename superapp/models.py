@@ -16,6 +16,7 @@ class Product(models.Model):
 class Customer(models.Model):
     name=models.CharField(max_length=30)
     phoneno=models.CharField(max_length=10)
+    orders=models.ManyToManyField(Product,blank=True)
 
     def __str__(self):
         return self.name

@@ -130,10 +130,22 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
     <hr style="color:black;width:800px;margin-left:0px;">
     
     
-  </form>
+    <form method="POST" style="color:black">
+      {% csrf_token %} 
+      
+      {{ form }}
+
+      <button type="submit" class="registerbtn">
+          Add
+      </button>
    
-   
-   
+   </form>
+   {% for product in p %} 
+
+   <h1>{{ product}}</h1>
+
+
+   {% endfor %}
    
   </div>
 </p>

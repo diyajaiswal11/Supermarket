@@ -11,7 +11,7 @@ from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseRedire
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse
-from .forms import ProductForm, CustomerForm
+from .forms import ProductForm, CustomerForm, OrderForm
 from .models import Product, Customer
 
 
@@ -34,7 +34,19 @@ def addcustomer(request):
 
 def addorder(request,pk):
     customer = get_object_or_404(Customer, pk=pk)
-    return render(request,'addorder.html',{'customer':customer})
+    form=OrderForm(instance=customer)
+    if request.method=='POST':
+        form=OrderForm(request.POST,instance=customer)
+        if form.is_valid():
+            form.save() 
+            #p=Product.objects.filter()
+            return HttpResponseRedirect(reverse('addorder', args=(customer.pk,)))
+            #pk1=form.pk
+            #return redirect('addorder', pk=form.pk)
+            #return redirect('frontpage') 
+        else:
+            form=OrderForm(instance=customer) 
+    return render(request,'addorder.html',{'customer':customer,'form':form,'p':p})
     
 
 
