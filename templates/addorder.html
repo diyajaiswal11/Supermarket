@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 body {margin:0;}
 input[type=text], input[type=password] {
@@ -25,7 +27,17 @@ input[type=text], input[type=password] {
   font-size: 13px;
 
 }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
   background-color: #ddd;
@@ -35,11 +47,11 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
 .registerbtn {
   background-color: black;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 14px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 90px;
+  width: 70px;
   opacity: 0.9;
 }
 
@@ -98,15 +110,13 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
 <body>
 
 <div class="navbar">
-  <a href="{% url 'home' %}">Super Market Management System</a>
+  <a href="{% url 'home' %}" style="font-family: times;">Super Market Management System</a>
   
 </div>
-<div class="nav1">
-    <a href="{% url 'frontpage' %}">Dashboard</a>
-    <a href="#">Product Management</a>
-    <a href="#">Sales Management</a>
-    <a href="#">Change Password</a>
-    <a href="{% url 'logoutpage' %}">Logout</a>
+<div class="nav1" style="font-family: times;">
+  <a href="{% url 'frontpage' %}">Dashboard</a>
+    
+  <a href="{% url 'logoutpage' %}">Logout</a>
     
 </div>
 
@@ -115,18 +125,18 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
     <!--
     <img src="static/images/supermarket.jpg" width="550" height="600" style="float:right;margin-top:-6em;" >
     -->
-    <p>
+    
       
       <div style="text-align: left;">
 
-  <h1 style="font-size: 20px;">Enter Customer Details</h1>
-  <h1 style="font-size: 13px;font-family:Verdana, Geneva, Tahoma, sans-serif;color:tomato">Customer added successfully!</h1>
+  <h1 style="font-size: 20px;font-family:times;"><b>Enter Customer Details</b></h1>
+  <h1 style="font-size: 15px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:tomato">Customer added successfully!</h1>
   
   <hr style="color:black;width:800px;margin-left:0px;">
     <p class="abc">{{ customer.name }}</p>
     
     <p class="abc">{{ customer.phoneno }}<p>
-    <h1 style="font-size: 20px;">Choose Product</h1>
+      <h1 style="font-size: 20px;font-family:times;"><b>Choose product (Use Ctrl+Click to add product)</b></h1>
     <hr style="color:black;width:800px;margin-left:0px;">
     
     
@@ -134,18 +144,62 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
       {% csrf_token %} 
       
       {{ form }}
-
+     
       <button type="submit" class="registerbtn">
           Add
       </button>
    
    </form>
-   {% for product in p %} 
+  
+      
+    <div style="text-align: center;">
+<br>
+<h1 style="font-size: 20px;font-family:times;text-align:left"><b>Items In Cart</b></h1>
+<hr style="color:black;width:1000px; text-align:left;margin-left:0px; ">
 
-   <h1>{{ product}}</h1>
+<table style="width:1000px;">
+<tr style="background-color: rgb(12, 4, 87);color:white;">
+  <th style="text-align: center;">Sr.No</th>
+  <th style="text-align: center;">Name</th>
+  <th style="text-align: center;">Company</th>
+  <th style="text-align: center;">Type</th>
+  <th style="text-align: center;">Cost</th>
+  
+</tr>
+
+{% for y in x.products.all %}
+
+              <tr style="color: black;font-size:16px;font-family:times;height:5px;">
+                  <th style="text-align: center;">{{ forloop.counter }}</th>
+                  <th>{{ y.name }}</th>
+                  <th>{{ y.company }}</th>
+                  <th>{{ y.protype }}</th>
+                  <th>{{ y.cost }}</th>
+                  
+                  
+              </tr>
+              
+{% endfor %}
+<tr style="background-color: rgb(241, 162, 59);color:white;height:15px;">
+  <th style="text-align: center;"></th>
+  <th style="text-align: center;"></th>
+  <th style="text-align: center;"></th>
+  <th style="text-align: right;">Total Cost:</th>
+  <th style="text-align: left;">{{ sum }}</th>
+  
+</tr>
+ 
+ </table>
+ 
+ <br>
+ 
+</div>
 
 
-   {% endfor %}
+<a href="{% url 'frontpage' %}" class="btn btn-primary" style="margin-left:890px;padding:10px 19px;">Save Order</a>
+   
+   
+
    
   </div>
 </p>

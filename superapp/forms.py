@@ -31,7 +31,7 @@ class CustomerForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model=Customer 
-        fields=['orders']
+        fields=['products']
 
 
 

@@ -61,9 +61,7 @@ body {margin:0;}
   
 </div>
 <div class="nav1">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="{% url 'home' %}">Home</a>
     <a href="{% url 'loginpage' %}">Login</a>
 </div>
 
@@ -76,9 +74,16 @@ body {margin:0;}
   <p style="font-size:16px;width:48%;">
       Super Market Management System is an online system wherein the Owner of the supermarket logs in as Administrator and can manage all the transactions made in the supermarket. He has the right to add products along with their price.
       He can also edit and delete existing products in the supermarket. He also registers new customers in the supermarket with their personal details and quantity of all the products they purchase. The products added to the cart sum up to 
-      the price the customer needs to pay and his bill is generated in the form of a PDF. Thus, all the transactions made in the supermarket are stored in the database and automatically the bill is generated for the customer with the amount he needs to pay.
+      the price the customer needs to pay and his bill is generated. Thus, all the transactions made in the supermarket are stored in the database and automatically the bill is generated for the customer with the amount he needs to pay.
    </p>
-  
+  <h4>
+    To Test the Application, login as:
+    <br>
+    Username:admin 
+    <br>
+    Password:superadmin@11
+
+  </h4>
 </p>
 
   

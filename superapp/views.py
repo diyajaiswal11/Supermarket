@@ -14,7 +14,7 @@ from django.urls import reverse
 from .forms import ProductForm, CustomerForm, OrderForm
 from .models import Product, Customer
 
-
+@login_required
 def addcustomer(request):
     if request.method=='POST':
         form=CustomerForm(request.POST)
@@ -31,7 +31,7 @@ def addcustomer(request):
 
 
 
-
+@login_required
 def addorder(request,pk):
     customer = get_object_or_404(Customer, pk=pk)
     form=OrderForm(instance=customer)
@@ -39,30 +39,49 @@ def addorder(request,pk):
         form=OrderForm(request.POST,instance=customer)
         if form.is_valid():
             form.save() 
-            #p=Product.objects.filter()
+             
+            
+            #print(p)
             return HttpResponseRedirect(reverse('addorder', args=(customer.pk,)))
-            #pk1=form.pk
-            #return redirect('addorder', pk=form.pk)
-            #return redirect('frontpage') 
+    
         else:
             form=OrderForm(instance=customer) 
-    return render(request,'addorder.html',{'customer':customer,'form':form,'p':p})
+    x=Customer.objects.filter(pk=pk).get()
+    sum=0
+    for y in x.products.all():
+        sum+=int(y.cost)
+    return render(request,'addorder.html',{'customer':customer,'form':form,'x':x,'sum':sum})
     
 
+"""
+@login_required
+def deleteorder(request,a,b):
+    customer = get_object_or_404(Customer, pk=b)
+    product=get_object_or_404(Product, pk=a)
+    if request.method=='POST':
+        customer.products.remove(product)
+        return redirect('addorder')
+        
+    return HttpResponseRedirect(reverse('addorder', args=(customer.pk,)))
+"""
+
+@login_required
+def viewcustomer(request):
+    customer=Customer.objects.all() 
+    return render(request,'viewcustomer.html',{'customer':customer})
 
 
 
 
 
-
-
+@login_required
 def viewproduct(request):
     products=Product.objects.all()
     return render(request,'viewproduct.html',{'products':products})
 
 
 
-
+@login_required
 def editproduct(request,pk):
 
     item=get_object_or_404(Product,pk=pk)
@@ -81,7 +100,7 @@ def editproduct(request,pk):
 
 
 
-
+@login_required
 def deleteproduct(request,pk):
     Product.objects.filter(id=pk).delete() 
 
@@ -90,7 +109,7 @@ def deleteproduct(request,pk):
 
 
 
-
+@login_required
 def addproduct(request):
     if request.method=='POST':
         form=ProductForm(request.POST)
@@ -102,10 +121,12 @@ def addproduct(request):
         form=ProductForm()
     return render(request,'addproduct.html',{'form':form})
 
-
+@login_required
 def logoutpage(request):
     logout(request)
     return redirect('home')
+
+
 
 def home(request):
     return render(request,'home.html')

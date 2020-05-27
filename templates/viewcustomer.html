@@ -117,28 +117,30 @@ table {
       
       <div style="text-align: center;">
 
-  <h1 style="font-size: 22px;font-family:times;"><b>Product Records</b></h1>
+  <h1 style="font-size: 22px;font-family:times;"><b>Customer Records</b></h1>
   <hr style="color:black;width:600px; text-align:center ">
   
   <table style="width:700px;margin-left:auto;margin-right:auto">
   <tr style="background-color: rgb(12, 4, 87);color:white;">
     <th style="text-align: center;">Sr.No</th>
     <th style="text-align: center;">Name</th>
-    <th style="text-align: center;">Company</th>
-    <th style="text-align: center;">Type</th>
-    <th style="text-align: center;">Cost</th>
-    <th style="text-align: center;">Action</th>
+    <th style="text-align: center;">Phone Number</th>
+    <th style="text-align: center;">Products</th>
+   
   </tr>
   
-  {% for product in products %} 
+  {% for j in customer %} 
 
                 <tr style="color: black;font-size:16px;font-family:times;height:5px;">
                     <th style="text-align: center;">{{ forloop.counter }}</th>
-                    <th>{{ product.name }}</th>
-                    <th>{{ product.company }}</th>
-                    <th>{{ product.protype }}</th>
-                    <th>{{ product.cost }}</th>
-                    <th style="text-align: center;"><a href="{% url 'editproduct' product.pk %}" class="btn btn-warning" type="button">Edit</a>  <a href="{% url 'deleteproduct' product.pk %}" class="btn btn-danger">Delete</a></th>
+                    <th>{{ j.name }}</th>
+                    <th>{{ j.phoneno }}</th>
+                    
+                    <th>
+                        {% for y in j.products.all %}
+                        <h4>{{y.name}}</h4>
+                        {% endfor %}
+                    </th>
                 </tr>
                 
   {% endfor %}

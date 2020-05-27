@@ -16,5 +16,7 @@ urlpatterns = [
     path('addcustomer/',views.addcustomer,name='addcustomer'),
     path('frontpage/',views.frontpage,name='frontpage'),
     path('addorder/<int:pk>',views.addorder,name='addorder'),
+    path('viewcustomer/',views.viewcustomer,name='viewcustomer'),
+    #path('deleteorder/<int:a>/<int:b>/',views.deleteorder,name='deleteorder'),
     
 ]
